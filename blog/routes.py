@@ -1,10 +1,14 @@
 from blog import app, db
 from slugify import slugify
 from blog.models import BlogPost, Comment, Tag
-from flask import request, jsonify
+from flask import request, jsonify, Blueprint
 import json
 
+REQUEST_API = Blueprint('routes', __name__)
 
+
+def get_blueprint():
+    return REQUEST_API
 
 def dict_helper(objectlist):
     result = [item.obj_to_dict() for item in objectlist]
@@ -95,7 +99,7 @@ def get_tags():
 #Add Comments to a blog post
 @app.route('/api/posts/<slug>/comments', methods=["POST"])
 def add_comment(slug):
-    body = request.json['body']
+    body = request.json['comment']['body']
     comment = Comment(body=body, blog=slug)
     db.session.add(comment)
     db.session.commit()

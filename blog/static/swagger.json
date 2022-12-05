@@ -1,0 +1,179 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "description": "",
+      "version": "1.0.0",
+      "title": "Azras-Blog-API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "servers": [
+        {
+          "url": "/"
+        }
+      ],
+      "tags": [
+        {
+          "name": "Blog Posts Request",
+          "description": "APIs for BlogPosts"
+        }
+      ],
+      "paths": {
+        "/api/posts": {
+          "get": {
+            "tags": [
+              "Blog Posts Request"
+            ],
+            "summary": "Returns all BlogPosts",
+            "responses": {
+              "200": {
+                "description": "OK"
+                
+              }
+            }
+          },
+        "post": {
+            "tags": [
+              "Blog Posts Request"
+            ],
+            "summary": "Create a new Blog Post",
+            "requestBody": {
+              "description": "Blog Request Post Object",
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type" : "object",
+                        "properties" : {
+                            "blogPost": {
+                                "type":"object",
+                                "properties": {
+                                    "title": {
+                                    "type": "string",
+                                    "example": "InternwTrends 2018" 
+                                    },
+                                    "description": {
+                                    "type" : "string",
+                                    "example": "Everw woer how?"
+                                    },
+                                    "body": {
+                                    "type" : "string",
+                                    "example": "An opinionat commentary, of the most important presentation of the year"
+                                    }
+                                }     
+                            }     
+                        }
+                   }
+                }
+                }
+            }
+        },
+            "produces": [
+              "application/json"
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
+              },
+              "400": {
+                "description": "Failed. Bad post data."
+              }
+            }
+        },
+        "/api/tags" : {
+            "get": {
+                "tags": [
+                  "Tags Request"
+                ],
+                "summary": "Returns all Tags",
+                "responses": {
+                  "200": {
+                    "description": "OK"
+                    
+                  }
+                }
+              }
+        },
+        "/api/posts/<slug>": {
+            "parameters": [
+                {
+                  "name": "fashion-jackson",
+                  "in": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              ],
+              "put": {
+                "tags": [
+                    "Blog Posts Request"
+                  ],
+                  "summary": "Create a new Blog Post",
+                  "requestBody": {
+                    "description": "Blog Request Put Object",
+                    "required": true,
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type" : "object",
+                              "properties" : {
+                                  "blogPost": {
+                                      "type":"object",
+                                      "properties": {
+                                          "title": {
+                                          "type": "string",
+                                          "example": "Trending" 
+                                          },
+                                          "description": {
+                                          "type" : "string",
+                                          "example": "Trandy Fashion"
+                                          },
+                                          "body": {
+                                          "type" : "string",
+                                          "example": "Stop following it!"
+                                          }
+                                      }     
+                                  }     
+                              }
+                         }
+                      }
+                      }
+              }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        },
+        "delete": {
+            "summary": "Delete Blog Post Request by slug",
+            "tags": [
+              "Blog Posts Request"
+            ],
+            "responses": {
+              "204": {
+                "description": "OK"
+              },
+              "400": {
+                "description": "Failed. Misunderstood Request."
+              },
+              "404": {
+                "description": "Failed. Book Request not found."
+              }
+            }
+          }
+        }
+        
+      }
+    }
+        
+    
+
+    
